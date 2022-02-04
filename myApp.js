@@ -15,39 +15,7 @@ app.get("/", (req, res) => {
 app.use("/public", express.static(__dirname + "/public"));
 
 // Serve JSON file on a Specific Route
-app.get("/", (req, res) => {
-    res.json({ "key": valor });
+app.get("/json", (req, res) => {
+    res.json({ key: "Olá json" });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+  

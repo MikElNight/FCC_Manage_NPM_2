@@ -1,4 +1,5 @@
 require('dotenv').config();
+var bodyParser = require("body-parser");
 /**********************************************/
 var express = require('express');
 var app = express();
@@ -16,6 +17,9 @@ app.get("/", (req, res) => {
 /**********************************************/
 // USE Static Assets from directory (stylesheets, scripts, images, etc.)
 app.use("/public", express.static(__dirname + "/public"));
+/**********************************************/
+// Use body-parser to Parse POST Requests
+app.use(bodyParser.urlencoded({extended: false}));
 /**********************************************/
 // GET route handler for ("/json") that serves a JSON file
 app.get("/json", (req, res) => {
@@ -48,6 +52,14 @@ app.get("/:word/echo", (req, res) => {
 // http://localhost:3000/name?first=luis&last=fonseca
 app.get("/name", (req, res) => {
     res.json( {name: req.query.first + " " + req.query.last} ) ;
+  });
+/**********************************************/
+// POST route handler for ("/name") that gets Data from POST Requests
+// 
+app.post("/name", (req, res) => {
+    console.log("First name: "+req.body.first);
+    console.log("Last name:  "+req.body.last);
+    res.json( {name: req.body.first + " " + req.body.last} ) ;
   });
 /**********************************************/
  module.exports = app;
